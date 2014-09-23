@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Video Conference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      
+    </style>
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+      <link href="/style.css" rel="stylesheet">
+ <script src="/webrtc.io.js"></script>
+    <script>
+        window.onload = function()
+        {
+            
+            var element = document.getElementById('you');
+            element.muted = "muted";
+            $('#unmute1').hide();
+            $('#show').hide();
+            $('#max').hide();            
+        }
+</script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+   <style type="text/css">
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #000;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+ #wrap > .container {
+        padding-top: 20px;
+      }
+       
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      .container {
+          width: auto;
+       
+       
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+    </style>
+  </head>
+
+  <body onLoad="init()" >
+<div id="wrap">
+   
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        
+      </div>
+    </div>
+
+    
+	
+<div class="row" id="mainwin" style="padding-top:66px;">		
+<div class="col-md-9 col-sm-9 col-xs-9">
+        <div id="videos1">
+        <video src="vid.mp4" ></video>&nbsp;&nbsp;
+		<video src="vid.mp4"></video>&nbsp;&nbsp;
+		<video src="vid.mp4"></video>&nbsp;&nbsp;
+		<video src="vid.mp4"></video>
+        </div>
+		<div class="row">
+		<div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:25%;">
+		<video id="you" style="width:300px;height:225px;z-index:1;" class="pull-left" autoplay></video>
+		</div>
+		</div>
+		</div>
+		
+		<div class="col-md-2 col-sm-2 col-xs-2 pull-right" style="border:1px solid;height:500px;border-radius:10px;">
+		
+		<button type="button">Screen Share</button>
+		<button type="button">File Share</button>
+		</div>
+		
+		
+		</div>
+		
+   <!-- /container -->
+    
+	  <div id="push">
+<div class="col-md-2 col-xs-2 pull-right" style="border:1px solid;border-radius:10px;margin-right:10px;">   <input type="text" id="chatinput" style="width:70%" >&nbsp;<button type="button">send</button> </div>
+        </div>
+     <!--<video id="you"  class="pull-right flip"  style="width:300px;height:150px; " autoplay ></video>->-->
+	  
+	  </div>
+      
+    <script src="/script.js"></script>
+	
+      <div id="footer" style="bottom:0px">
+      
+                <div class="conference_controls" style="display:block">
+    <a id="addUserControl" title="Add user"></a>
+    <a id="enableChatButton"  title="Text chat"></a>
+    <a id="muteControl"  title="Mute microphone"></a>
+    <a id="shareControl"  title="Screen sharing"></a>
+    <a class="hangup" onClick="hangup()"  title="Hangup"></a>
+
+</div>
+     </div>
+  
+      <script src="jquery.min.js"></script>
+      
+    <script src="/bootstrap/js/bootstrap.js"></script>
+   
+<!--
+<div id="chat_box" class="chat_box">
+    <div class="messenger bg-white">
+        <div class="chat-header text-white bg-gray-dark">
+            <span class="with">Chat</span>
+            <a class="pull-right chat-toggle">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <a class="pull-right chat-minimize">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+        </div>
+        <div class="messenger-body open">
+            <ul class="chat-messages chat_log">
+            </ul>
+            <div class="chat-footer">
+                <div class="p-lr-10">
+                    <div class="enter_message">
+                        <div class="chat_message_input input-light input-large brad chat-search" contenteditable="true"></div></td>
+                        <button class="showSmiles"></button>
+                        <span class="smilesContainer">
+                            <div class="smiles_box">
+                                <button data-img="/img/emoticons/smile.png"/>
+                                <button data-img="/img/emoticons/frown.png"/>
+                                <button data-img="/img/emoticons/big_grin.png"/>
+                                <button data-img="/img/emoticons/sunglasses_3.png"/>
+                                <button data-img="/img/emoticons/oh_rly.png"/>
+                                <button data-img="/img/emoticons/crying.png"/>
+                                <button data-img="/img/emoticons/agape.png"/>
+                                <button data-img="/img/emoticons/angry.png"/>
+                                <button data-img="/img/emoticons/wink.png"/>
+                                <button data-img="/img/emoticons/wink_tongue.png"/>
+                                <button data-img="/img/emoticons/yawn.png"/>
+                                <button data-img="/img/emoticons/asleep.png"/>
+                                <button data-img="/img/emoticons/bashful.png"/>
+                                <button data-img="/img/emoticons/bashful_cute_2.png"/>
+                                <button data-img="/img/emoticons/big_grin_evil.png"/>
+                            </div>     <button data-img="/img/emoticons/bored.png"/>
+                                <button data-img="/img/emoticons/dead.png"/>
+                                <button data-img="/img/emoticons/delicious.png"/>
+                                <button data-img="/img/emoticons/evil.png"/>
+                                <button data-img="/img/emoticons/evil_invert.png"/>
+                                <button data-img="/img/emoticons/grin.png"/>
+                                <button data-img="/img/emoticons/impatient.png"/>
+                                <button data-img="/img/emoticons/inlove.png"/>
+                                <button data-img="/img/emoticons/kiss.png"/>
+                                <button data-img="/img/emoticons/mad.png"/>
+                                <button data-img="/img/emoticons/nerdy.png"/>
+                                <button data-img="/img/emoticons/not_even.png"/>
+                                <button data-img="/img/emoticons/sarcasm.png"/>
+                                <button data-img="/img/emoticons/sick.png"/>
+                                <button data-img="/img/emoticons/sour.png"/>
+                                <button data-img="/img/emoticons/whistle.png"/>
+                                <button data-img="/img/emoticons/zipped.png"/>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+  </body>
+</html>
